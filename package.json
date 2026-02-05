@@ -1,0 +1,25 @@
+{
+  "name": "danielsilva-test",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/danielsilva-loanpro/danielsilva-test#readme",
+  "bugs": {
+    "url": "https://github.com/danielsilva-loanpro/danielsilva-test/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielsilva-loanpro/danielsilva-test.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ca:login": " aws codeartifact login --tool npm --repository fearless-framework-v2 --domain io-loanpro-api-v2 --domain-owner 685975343742",
+    "ca:logout": "npm config set registry https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "fearless-cicd-v2": "github:LoanPro-io/fearless-cicd-v2"
+  }
+}

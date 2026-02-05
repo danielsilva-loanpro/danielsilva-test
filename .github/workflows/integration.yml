@@ -1,0 +1,37 @@
+name: CI/CD Pipeline
+'on':
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+  id-token: write
+jobs:
+  init_stage_action1:
+    name: Action1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build
+        run: |-
+          echo "First action in the Init stage"
+          ls -l
+  init_stage_action2___parallel:
+    name: Action2 - Parallel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build
+        run: echo "Second action  - RUn order 2"
+    needs: init_stage_action1
+  init_stage_action3___parallel:
+    name: Action3 - Parallel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build
+        run: echo "Third action  - RUn order 2"
+    needs: init_stage_action2___parallel
