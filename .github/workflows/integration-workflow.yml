@@ -1,0 +1,39 @@
+name: Integration PL
+'on':
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+  id-token: write
+jobs:
+  test:
+    name: Checkout Action
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Checkout action"
+      - run: ls -la
+    runs-on: ubuntu-latest
+  action2:
+    name: Satge2 - Action1
+    needs: test
+    steps:
+      - run: echo "Satge2 - Action1"
+      - run: ls -la
+    runs-on: ubuntu-latest
+  action2action2:
+    name: Satge2 - Action2
+    needs: test
+    steps:
+      - run: echo "Satge2 - Action2"
+      - run: ls -la
+    runs-on: ubuntu-latest
+  action4:
+    name: Satge3 - Action1
+    needs:
+      - action2
+      - action2
+    steps:
+      - run: echo "Satge3 - Action1"
+      - run: ls -la
+    runs-on: ubuntu-latest

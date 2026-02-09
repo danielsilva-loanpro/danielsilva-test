@@ -20,6 +20,6 @@
     "ca:logout": "npm config set registry https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "fearless-cicd-v2": "github:LoanPro-io/fearless-cicd-v2"
+    "fearless-cicd-v2": "github:LoanPro-io/fearless-cicd-v2#D8267819"
   }
 }
