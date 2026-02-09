@@ -31,7 +31,7 @@ export const config: WorkflowConfig = {
           { run: 'ls -la' },    
         ]
       },
-      action2action2: {
+      action3: {
         name: 'Satge2 - Action2',
         needs: 'test',
         steps: [
@@ -42,7 +42,7 @@ export const config: WorkflowConfig = {
       
       action4: {
         name: 'Satge3 - Action1',
-        needs: ['action2', 'action2'],
+        needs: ['action2', 'action3'],
         steps: [
           { run: 'echo "Satge3 - Action1"' },
           { run: 'ls -la' },

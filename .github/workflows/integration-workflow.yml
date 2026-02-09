@@ -21,7 +21,7 @@ jobs:
       - run: echo "Satge2 - Action1"
       - run: ls -la
     runs-on: ubuntu-latest
-  action2action2:
+  action3:
     name: Satge2 - Action2
     needs: test
     steps:
@@ -32,7 +32,7 @@ jobs:
     name: Satge3 - Action1
     needs:
       - action2
-      - action2
+      - action3
     steps:
       - run: echo "Satge3 - Action1"
       - run: ls -la
