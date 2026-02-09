@@ -1,0 +1,32 @@
+name: deploy-template Template
+'on':
+  workflow_call:
+    inputs:
+      foo:
+        required: true
+        type: string
+      bar:
+        required: false
+        type: boolean
+        default: false
+    secrets: {}
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  deployInitSetup:
+    name: deployInitSetup
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "foo ${{ inputs.foo }}"
+      - run: echo "bar ${{ inputs.bar }}"
+      - run: Echo "deploy init setup"
+    runs-on: ubuntu-latest
+  deployApp:
+    name: deployApp
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "foo ${{ inputs.foo }}"
+      - run: echo "bar ${{ inputs.bar }}"
+      - run: echo "deploy app"
+    runs-on: ubuntu-latest

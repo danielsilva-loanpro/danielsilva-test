@@ -1,8 +1,38 @@
-import { WorkflowConfig } from 'fearless-cicd-v2';
+import { WorkflowConfig, ReusableWorkflowTemplate } from 'fearless-cicd-v2';
+
+const deployTemplate: ReusableWorkflowTemplate = {
+    name: 'deploy-template',
+    inputs: {
+        foo: { required: true, type: 'string' },
+        bar: { required: false, type: 'boolean', default: false }
+    },
+    jobs: {
+        deployInitSetup: {
+            name: 'deployInitSetup',
+            steps: [
+                { uses: 'actions/checkout@v4' },
+                { run: 'echo "foo ${{ inputs.foo }}"' },
+                { run: 'echo "bar ${{ inputs.bar }}"' },
+                { run: 'Echo "deploy init setup"' }
+            ]
+        },
+        deployApp: {
+            name: 'deployApp',
+            steps: [
+                { uses: 'actions/checkout@v4' },
+                { run: 'echo "foo ${{ inputs.foo }}"' },
+                { run: 'echo "bar ${{ inputs.bar }}"' },
+                { run: 'echo "deploy app"' }
+            ]
+        },
+    }
+}
 
 export const config: WorkflowConfig = {
   projectName: 'my-project',
-  
+  reusableWorkflows: [
+    deployTemplate
+  ],
   integration: {
     name: 'Integration PL',
     trigger: {
@@ -12,7 +42,6 @@ export const config: WorkflowConfig = {
       contents: 'write',
       'id-token': 'write'
     },
-    
     jobs: {
       test: {
         name: 'Checkout Action',
@@ -48,6 +77,25 @@ export const config: WorkflowConfig = {
           { run: 'echo "foo"' },
           { run: 'ls -la' },
         ]
+      },
+
+      deploy_alpha: {
+        name: 'Deploy Foo1',
+        reusableWorkflow: deployTemplate.name,
+        needs: 'action4',
+        with: { 
+            foo: 'alpha',
+            bar: true 
+        },
+      },
+      deploy_beta: {
+        name: 'Deploy Foo2',
+        reusableWorkflow: deployTemplate.name,
+        needs: 'action4',
+        with: { 
+            foo: 'beta',
+            bar: false 
+        },
       },
     }
   },
