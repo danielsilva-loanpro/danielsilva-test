@@ -45,6 +45,7 @@ export const config: WorkflowConfig = {
         needs: ['action2', 'action3'],
         steps: [
           { run: 'echo "Satge3 - Action1"' },
+          { run: 'echo "foo"' },
           { run: 'ls -la' },
         ]
       },
