@@ -18,6 +18,7 @@ const deployTemplate: ReusableWorkflowTemplate = {
         },
         deployApp: {
             name: 'deployApp',
+            needs: 'deployInitSetup',
             steps: [
                 { uses: 'actions/checkout@v4' },
                 { run: 'echo "foo ${{ inputs.foo }}"' },
