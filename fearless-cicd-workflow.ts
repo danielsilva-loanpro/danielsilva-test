@@ -13,7 +13,7 @@ const deployTemplate: ReusableWorkflowTemplate = {
                 { uses: 'actions/checkout@v4' },
                 { run: 'echo "foo ${{ inputs.foo }}"' },
                 { run: 'echo "bar ${{ inputs.bar }}"' },
-                { run: 'Echo "deploy init setup"' }
+                { run: 'echo "deploy init setup"' }
             ]
         },
         deployApp: {

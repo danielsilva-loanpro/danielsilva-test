@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: echo "foo ${{ inputs.foo }}"
       - run: echo "bar ${{ inputs.bar }}"
-      - run: Echo "deploy init setup"
+      - run: echo "deploy init setup"
     runs-on: ubuntu-latest
   deployApp:
     name: deployApp
